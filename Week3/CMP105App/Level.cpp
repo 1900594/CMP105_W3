@@ -1,11 +1,39 @@
 #include "Level.h"
+#include<iostream>
+/*
+TODO:
+1. write a code to move the cirle towards the right - DONE
 
+2.Check if the circle reached the right side of the screen
+
+3. if it has reached then move towards the left.
+
+4. When it reaches the left then move towards the right again.
+*/
 Level::Level(sf::RenderWindow* hwnd, Input* in)
 {
 	window = hwnd;
 	input = in;
 
 	// initialise game objects
+	circle.setRadius(15);
+	circle.setPosition(window->getSize().x - 100, 300);
+	circle.setFillColor(sf::Color::Green);
+	circle.setOutlineColor(sf::Color::Magenta);
+	circle.setOutlineThickness(2.f);
+
+	speed = 50.f;
+
+/*
+
+	if (circle == )
+	{
+		speed = -50.f;
+	}
+	else if (circle == )
+	{
+		speed = 50.f;
+	}*/
 
 }
 
@@ -20,17 +48,38 @@ void Level::handleInput(float dt)
 
 }
 
+
 // Update game objects
 void Level::update(float dt)
 {
-	
+
+	std::cout << window->getSize().x<<"\n";
+	std::cout << circle.getPosition().x << "\n";
+	float windX, circX;
+	windX = window->getSize().x;
+	circX = circle.getPosition().x;
+	if (circX >= windX)
+	{
+		std::cout << "Reached" << "\n";
+		speed = -50.f;
+	}
+
+	if (circX <= 0)
+	{
+		std::cout << "Reached" << "\n";
+		speed = 50.f;
+	}
+
+	//update/ move circle
+	circle.move(speed * dt, 0);
+
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
-
+	window->draw(circle);
 	endDraw();
 }
 
