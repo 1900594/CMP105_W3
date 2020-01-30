@@ -24,16 +24,14 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 
 	speed = 100.f;
 
-/*
 
-	if (circle == )
-	{
-		speed = -50.f;
-	}
-	else if (circle == )
-	{
-		speed = 50.f;
-	}*/
+	circle2.setRadius(10);
+	circle2.setPosition(200, 400);
+	circle2.setFillColor(sf::Color::Red);
+	circle2.setOutlineColor(sf::Color::Yellow);
+	circle2.setOutlineThickness(2.f);
+
+	speed = 50.f;
 
 }
 
@@ -45,7 +43,15 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
+	if (input->isKeyDown(sf::Keyboard::Right))
+	{
+		speed = 50.f;
+	}
 
+	if (input->isKeyDown(sf::Keyboard::Left))
+	{
+		speed = -50.f;
+	}
 }
 
 
@@ -75,6 +81,7 @@ void Level::update(float dt)
 
 	//update/ move circle
 	circle.move(speed * dt, 0);
+	circle2.move(speed * dt, 0);
 
 }
 
@@ -82,7 +89,8 @@ void Level::update(float dt)
 void Level::render()
 {
 	beginDraw();
-	window->draw(circle);
+	//window->draw(circle);
+	window->draw(circle2);
 	endDraw();
 }
 

@@ -26,5 +26,8 @@ private:
 
 	//moving circle vars
 	sf::CircleShape circle;
+	sf::CircleShape circle2;
 	float speed;
+	//moving triangle vars
+	
 };
