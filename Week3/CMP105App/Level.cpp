@@ -100,12 +100,12 @@ void Level::MovingShape() {
 
 	if (input->isKeyDown(sf::Keyboard::Up))
 	{
-		speedUP = 50.f;
+		speedUP = -50.f;
 	}
 
 	if (input->isKeyDown(sf::Keyboard::Down))
 	{
-		speedUP = -50.f;
+		speedUP = 50.f;
 	}
 }
 
