@@ -22,7 +22,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	circle.setOutlineColor(sf::Color::Magenta);
 	circle.setOutlineThickness(2.f);
 
-	speed = 50.f;
+	speed = 100.f;
 
 /*
 
@@ -55,19 +55,22 @@ void Level::update(float dt)
 
 	std::cout << window->getSize().x<<"\n";
 	std::cout << circle.getPosition().x << "\n";
-	float windX, circX;
+	float windX, circX, circX2;
 	windX = window->getSize().x;
 	circX = circle.getPosition().x;
-	if (circX >= windX)
+	circX = circX + 30;
+	circX2 = circX - 30;
+
+	if (circX >= 1200)
 	{
 		std::cout << "Reached" << "\n";
-		speed = -50.f;
+		speed = -100.f;
 	}
 
-	if (circX <= 0)
+	if (circX2 <= 0)
 	{
 		std::cout << "Reached" << "\n";
-		speed = 50.f;
+		speed = 100.f;
 	}
 
 	//update/ move circle
