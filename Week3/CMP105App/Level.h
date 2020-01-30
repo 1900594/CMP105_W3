@@ -19,7 +19,7 @@ private:
 	// Default functions for rendering to the screen.
 	void beginDraw();
 	void endDraw();
-
+	void MovingShape();
 	// Default variables for level class.
 	sf::RenderWindow* window;
 	Input* input;
@@ -28,6 +28,8 @@ private:
 	sf::CircleShape circle;
 	sf::CircleShape circle2;
 	float speed;
+	float speedLeft;
+	float speedUP;
 	//moving triangle vars
 	
 };

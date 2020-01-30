@@ -31,7 +31,6 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	circle2.setOutlineColor(sf::Color::Yellow);
 	circle2.setOutlineThickness(2.f);
 
-	speed = 50.f;
 
 }
 
@@ -43,15 +42,7 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
-	if (input->isKeyDown(sf::Keyboard::Right))
-	{
-		speed = 50.f;
-	}
-
-	if (input->isKeyDown(sf::Keyboard::Left))
-	{
-		speed = -50.f;
-	}
+	MovingShape();
 }
 
 
@@ -81,15 +72,48 @@ void Level::update(float dt)
 
 	//update/ move circle
 	circle.move(speed * dt, 0);
-	circle2.move(speed * dt, 0);
+	circle2.move(speedLeft * dt, speedUP * dt);
 
+}
+
+/*
+1. Make Up arrow move circle up the screen
+2. Make Down arrow move circle down the screen
+3. Make Left arrow move circle LEFT the screen
+4. Make right arrow move circle right the screen
+5. if circle reaches boundaries dont let it move
+
+*/
+
+void Level::MovingShape() {
+
+	if (input->isKeyDown(sf::Keyboard::Right))
+	{
+		speedLeft = 50.f;
+
+	}
+
+	if (input->isKeyDown(sf::Keyboard::Left))
+	{
+		speedLeft = -50.f;
+	}
+
+	if (input->isKeyDown(sf::Keyboard::Up))
+	{
+		speedUP = 50.f;
+	}
+
+	if (input->isKeyDown(sf::Keyboard::Down))
+	{
+		speedUP = -50.f;
+	}
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
-	//window->draw(circle);
+	window->draw(circle);
 	window->draw(circle2);
 	endDraw();
 }
