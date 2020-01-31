@@ -72,7 +72,7 @@ void Level::update(float dt)
 
 	//update/ move circle
 	circle.move(speed * dt, 0);
-	circle2.move(speedLeft * dt, speedUP * dt);
+	circle2.move(speedLeft * dt , speedUP * dt );
 
 }
 
@@ -87,26 +87,39 @@ void Level::update(float dt)
 
 void Level::MovingShape() {
 
+
+	speedLeft = 0.f;
+	speedUP = 0.f;
+
 	if (input->isKeyDown(sf::Keyboard::Right))
 	{
-		speedLeft = 50.f;
-
+		speedLeft = 100.f;
+		input->setKeyUp(sf::Keyboard::Right);
 	}
 
-	if (input->isKeyDown(sf::Keyboard::Left))
+	else if (input->isKeyDown(sf::Keyboard::Left))
 	{
-		speedLeft = -50.f;
+		speedLeft = -100.f;
+		input->setKeyUp(sf::Keyboard::Left);
 	}
 
-	if (input->isKeyDown(sf::Keyboard::Up))
+	else if (input->isKeyDown(sf::Keyboard::Up))
 	{
-		speedUP = -50.f;
+		speedUP = -100.f;
+		input->setKeyUp(sf::Keyboard::Up);
 	}
 
-	if (input->isKeyDown(sf::Keyboard::Down))
+	else if (input->isKeyDown(sf::Keyboard::Down))
 	{
-		speedUP = 50.f;
+		speedUP = 100.f;
+		input->setKeyUp(sf::Keyboard::Down);
 	}
+
+
+
+
+
+
 }
 
 // Render level
